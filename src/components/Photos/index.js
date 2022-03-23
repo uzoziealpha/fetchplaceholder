@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import JsonPlaceholder from '../../apis/JsonPlaceholder';
 import Presentation from './presentation';
+import ReactPaginate from 'react-paginate';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
@@ -12,6 +15,7 @@ const Photos = props => {
 	const [createFormShow, setCreateFormShow] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(null);
 	const [isLoadingAlbum, setIsLoadingAlbum] = useState(false);
+     const [ pageCount, setPageCount] = useState(0);
 
 
 	useEffect(() => {
@@ -26,6 +30,11 @@ const Photos = props => {
 			setIsLoadingAlbum(false);
 		});
 	}, [props.match.params.id]);
+
+
+
+	
+
 
 	const createHandlers = {
 		onCreateFormOpen: () => {
@@ -56,6 +65,9 @@ const Photos = props => {
 		},
 	};
 
+	
+
+
 	const updateHandlers = {
 		onUpdateFormOpen: (photo, index) => () => {
 			setUpdateFormPhoto(photo);
@@ -80,7 +92,21 @@ const Photos = props => {
 		},
 	};
 
+
+
+
+
+	const handlePageClick = (data) => {
+		console.log(data.selected);
+
+		
+	}
+
+
+
 	return (
+
+		<div>
 		<Presentation
 			photos={photos}
 			updateFormPhoto={updateFormPhoto}
@@ -92,6 +118,29 @@ const Photos = props => {
 			{...deleteHandlers}
 			{...updateHandlers}
 		/>
+
+		<ReactPaginate  
+		  previousLabel={'previous'}
+		  nextLabel={'next'}
+		  breakLabel={'...'}
+		  pageCount={100}
+		  marginPagesDisplayed={3}
+		  pageRangeDisplayed={5}
+		  onPageChange={handlePageClick}
+		  containerClassName={'pagination justify-content-center'}
+		  pageClassName={'page-item'}
+		  pageLinkClassName={'page-link'}
+		  previousClassName={'page-item'}
+		  previousLinkClassName={'page-link'}
+		  nextClassName={'page-item'}
+		  nextLinkClassName={'page-link'}
+		  breakClassName={'page-item'}
+          breakLinkClassName={'page-link'}
+          activeClassName={'active'}
+		/>
+		</div>
+
+
 	);
 };
 
