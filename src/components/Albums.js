@@ -27,7 +27,7 @@ const Albums = () => {
 					{album.title}
 				</td>
 				<td className='text-center'>
-					<Button as={Link} to={`/photos/${album.id}`} size='sm' variant='dark'>
+					<Button as={Link} to={`/photos/${album.id}`} size='sm'>
 						Album
 					</Button>
 				</td>

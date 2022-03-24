@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import JsonPlaceholder from '../../apis/JsonPlaceholder';
 import Presentation from './presentation';
 import ReactPaginate from 'react-paginate';
@@ -15,7 +14,9 @@ const Photos = props => {
 	const [createFormShow, setCreateFormShow] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(null);
 	const [isLoadingAlbum, setIsLoadingAlbum] = useState(false);
-     const [ pageCount, setPageCount] = useState(0);
+    
+
+
 
 
 	useEffect(() => {
